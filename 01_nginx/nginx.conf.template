@@ -1,8 +1,8 @@
 # =================================================================
 # WHAT TO CONFIGURE
   # VARIABLES SECTION:
-    # <public ip>:<public port if necessary>
-    # <private ip>
+    # datacenter.juliokozarewicz.com:3000
+    # 192.168.1.7
 # =================================================================
 
 worker_processes 1;

@@ -41,8 +41,9 @@ const options = {
   customCss: `
     .topbar { display: none }
     .swagger-ui { 
-      max-width: 85% 
-      margin: auto
+      width: 85%;
+      max-width: 1200px;
+      margin: auto;
     }
     .wrapper section { margin-bottom: 50px }
   `,
