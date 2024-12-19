@@ -7,6 +7,6 @@ const routes = Router()
 const encryptionController = new EncryptionController()
 
 // routes
-routes.get('/encryption', encryptionController.handle.bind(encryptionController))
+routes.post('/encryption', encryptionController.handle.bind(encryptionController))
 
 export default routes

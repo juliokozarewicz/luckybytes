@@ -77,6 +77,136 @@ const documentation = {
       }
     },
     // -------------------------------------------------- (end hello world)
+
+    // ENCRYPTION
+    // --------------------------------------------------
+    "/luckybytes/encryption": {
+      post: {
+        summary: "Encrypt text using AES-256-CBC",
+        description: "This endpoint accepts a password and a raw text, validates them, and returns an encrypted version of the raw text using AES-256-CBC encryption.",
+        tags: ["ENCRYPTION"],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  password: {
+                    type: "string",
+                    description: "Password to derive encryption key and IV. Must be at least 8 characters long and contain at least one uppercase letter, one number, and one special character.",
+                    example: "SecurePass1!"
+                  },
+                  rawtext: {
+                    type: "string",
+                    description: "The raw text to be encrypted. Maximum length is 500 characters. Special characters such as <, >, &, ' and \" are not allowed.",
+                    example: "This is a secret text to encrypt."
+                  }
+                },
+                required: ["password", "rawtext"]
+              }
+            }
+          }
+        },
+        responses: {
+          "200": {
+            description: "Successful response with encrypted text.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "string",
+                      example: "success"
+                    },
+                    code: {
+                      type: "integer",
+                      example: 200
+                    },
+                    message: {
+                      type: "string",
+                      example: "Success! The text has been successfully encrypted."
+                    },
+                    data: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          encrypted_text: {
+                            type: "string",
+                            description: "The encrypted version of the raw text.",
+                            example: "7fbb0e8f58b91b01f0ef9c8d30d11b8b2b5206b8db63a716c8e2a655946bb7e9"
+                          }
+                        }
+                      }
+                    },
+                    links: {
+                      type: "object",
+                      properties: {
+                        self: {
+                          type: "string",
+                          example: "/luckybytes/encryption"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            description: "Bad request. Missing or invalid parameters.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "string",
+                      example: "error"
+                    },
+                    code: {
+                      type: "integer",
+                      example: 400
+                    },
+                    message: {
+                      type: "string",
+                      example: "Invalid input or parameters."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            description: "Unauthorized. Invalid text input or encryption failure.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "string",
+                      example: "error"
+                    },
+                    code: {
+                      type: "integer",
+                      example: 401
+                    },
+                    message: {
+                      type: "string",
+                      example: "Invalid text input."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    // -------------------------------------------------- (end encryption)
   }
 };
 
