@@ -1,10 +1,8 @@
-FROM node:latest
+FROM nginx:latest
 
-# Install gettext and Nginx
-RUN apt update && apt install -y gettext nginx
+COPY nginx.conf.template /etc/nginx/nginx.conf.template
 
-# Copy nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Run NGINX
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/entrypoint.sh"]

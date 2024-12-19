@@ -18,26 +18,6 @@ http {
 
   server {
 
-    # variables
-    # ================================================================= 
-
-    # DOMAIN
-    set $DOMAIN_ORIGIN "<public ip>:<public port if necessary>";
-
-    # DOCUMENTATION
-    set $DOCUMENTATION_HOST "<private ip>";
-    set $DOCUMENTATION_PORT "3001";
-
-    # HELLO WORLD
-    set $HELLOWORLD_HOST "<private ip>";
-    set $HELLOWORLD_PORT "3003";
-
-    # ENCRYPTION
-    set $ENCRYPTION_HOST "<private ip>";
-    set $ENCRYPTION_PORT "3004";
-
-    # ================================================================= (end variables)
-
     listen 80;
     server_name $DOMAIN_ORIGIN www.$DOMAIN_ORIGIN;
 
@@ -62,7 +42,7 @@ http {
     # Disable SSLv3
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 
-    # Enable OCSP stapling (http://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox)
+    # Enable OCSP stapling (blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox)
     ssl_stapling on;
     ssl_stapling_verify on;
     resolver 8.8.8.8 8.8.4.4 valid=300s;
@@ -127,7 +107,7 @@ http {
     # HELLO WORLD
     # =================================================================
     location /helloworld/helloworld {
-      proxy_pass http://$HELLOWORLD_HOST:$HELLOWORLD_PORT;
+      proxy_pass $HELLOWORLD_HOST:$HELLOWORLD_PORT;
       proxy_set_header Host host;
       proxy_set_header X-Real-IP remote_addr;
       proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
@@ -138,7 +118,7 @@ http {
     # DOCUMENTATION
     # =================================================================
     location /documentation/swagger {
-      proxy_pass http://$DOCUMENTATION_HOST:$DOCUMENTATION_PORT;
+      proxy_pass $DOCUMENTATION_HOST:$DOCUMENTATION_PORT;
       proxy_set_header Host host;
       proxy_set_header X-Real-IP remote_addr;
       proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
@@ -146,7 +126,7 @@ http {
     }
 
     location /documentation/redocly {
-      proxy_pass http://$DOCUMENTATION_HOST:$DOCUMENTATION_PORT;
+      proxy_pass $DOCUMENTATION_HOST:$DOCUMENTATION_PORT;
       proxy_set_header Host host;
       proxy_set_header X-Real-IP remote_addr;
       proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
@@ -154,7 +134,7 @@ http {
     }
 
     location /documentation/json {
-      proxy_pass http://$DOCUMENTATION_HOST:$DOCUMENTATION_PORT;
+      proxy_pass $DOCUMENTATION_HOST:$DOCUMENTATION_PORT;
       proxy_set_header Host host;
       proxy_set_header X-Real-IP remote_addr;
       proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
@@ -165,7 +145,7 @@ http {
     # ENCRYPTION
     # =================================================================
     location /luckybytes/encryption {
-      proxy_pass http://$ENCRYPTION_HOST:$ENCRYPTION_PORT;
+      proxy_pass $ENCRYPTION_HOST:$ENCRYPTION_PORT;
       proxy_set_header Host host;
       proxy_set_header X-Real-IP remote_addr;
       proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
