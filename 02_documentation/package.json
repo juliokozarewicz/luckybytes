@@ -1,0 +1,44 @@
+{
+  "application_name": "Documentation",
+  "service_name": "documentation",
+  "version": "1.0.0",
+  "description": "*** Documentation description ****. \n\nEach service handles its errors independently, with translations for existing languages. The gateway has only two errors in English, with no translation support:\n\n[ 1 ] - Bad Request, attempt to access a non-existent endpoint in the documentation (code 406):\n\n```json\n{\n  \"status\": \"error\",\n  \"code\": 406,\n  \"message\": \"Bad Request: An error has occurred.\"\n}\n```\n\n[ 2 ] - Service Unavailable (code 503):\n\n```json\n{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service unavailable, we are investigating. Please try again later.\"\n}\n```",
+  "main": "index.js",
+  "scripts": {
+    "typeorm": "ts-node-dev node_modules/.bin/typeorm",
+    "typeorm:win": "cross-env ts-node-dev ./node_modules/typeorm/cli.js",
+    "start": "ts-node server.ts",
+    "dev": "clear && nodemon server.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "pg": "^8.13.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/lodash": "^4.17.9",
+    "@types/node": "^22.7.3",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.2"
+  }
+}

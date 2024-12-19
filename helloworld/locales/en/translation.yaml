@@ -1,0 +1,6 @@
+helloworld: "Hello world!"
+bad_request: "bad request, please check the data sent."
+server_error: "An error has occurred, please try again later."
+contains_too_many_characters: "This field contains too many characters."
+contains_disallowed_characters: "This field contains disallowed characters."
+too_many_requests: "Too many requests, please try again later"

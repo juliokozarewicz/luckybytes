@@ -1,0 +1,6 @@
+helloworld: "Olá, mundo!"
+bad_request: "Solicitação inválida, por favor verifique os dados enviados."
+server_error: "Ocorreu um erro, por favor tente novamente mais tarde."
+contains_too_many_characters: "Este campo contém caracteres demais."
+contains_disallowed_characters: "Este campo contém caracteres não permitidos."
+too_many_requests: "Muitas requisições, tente novamente mais tarde."

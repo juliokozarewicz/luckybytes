@@ -1,0 +1,7 @@
+services:
+  helloworld:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "${APPLICATION_PORT}:${APPLICATION_PORT}"
