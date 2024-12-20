@@ -13,8 +13,7 @@ export const EncryptionValidation = (req: Request) => {
         rawtext: z.string()
             .min(1, req.t("is_required"))
             .max(500, req.t("contains_too_many_characters"))
-            .regex(/^[^<>&'"/]+$/, req.t("contains_disallowed_characters"))
-            .optional(),
+            .regex(/^[^<>&'"/]+$/, req.t("contains_disallowed_characters")),
 
     })
 }
