@@ -213,7 +213,7 @@ const documentation = {
     "/luckybytes/decryption": {
       post: {
         summary: "Decrypt encrypted text using AES-256-CBC",
-        description: "Este endpoint recebe uma senha e um texto criptografado, valida-os e retorna o texto original (descriptografado) usando o algoritmo AES-256-CBC.",
+        description: "This endpoint accepts a password and an encrypted text, validates them, and returns the original (decrypted) text using the AES-256-CBC algorithm.",
         tags: ["ENCRYPTION"],
         requestBody: {
           required: true,
@@ -224,12 +224,12 @@ const documentation = {
                 properties: {
                   password: {
                     type: "string",
-                    description: "Senha usada para derivar a chave e o IV para decriptação. Deve ter no mínimo 8 caracteres e não pode conter caracteres proibidos como <, >, &, ', \" ou /. ",
+                    description: "Password used to derive the key and IV for decryption. It must be at least 8 characters long and cannot contain prohibited characters such as <, >, &, ', \" or /. ",
                     example: "SecurePass1!"
                   },
                   cryptotext: {
                     type: "string",
-                    description: "Texto criptografado que será decriptografado. O tamanho máximo é 1500 caracteres. Caracteres especiais como <, >, &, ', \" não são permitidos.",
+                    description: "Encrypted text that will be decrypted. The maximum length is 1500 characters. Special characters like <, >, &, ', \" are not allowed.",
                     example: "7fbb0e8f58b91b01f0ef9c8d30d11b8b2b5206b8db63a716c8e2a655946bb7e9"
                   }
                 },
@@ -240,7 +240,7 @@ const documentation = {
         },
         responses: {
           "200": {
-            description: "Resposta bem-sucedida com o texto descriptografado.",
+            description: "Successful response with the decrypted text.",
             content: {
               "application/json": {
                 schema: {
@@ -256,7 +256,7 @@ const documentation = {
                     },
                     message: {
                       type: "string",
-                      example: "Sucesso! O texto foi descriptografado com sucesso."
+                      example: "Success! The text was successfully decrypted."
                     },
                     data: {
                       type: "array",
@@ -265,7 +265,7 @@ const documentation = {
                         properties: {
                           encrypted_text: {
                             type: "string",
-                            description: "O texto original (descriptografado).",
+                            description: "The original (decrypted) text.",
                             example: "This is a secret text to encrypt."
                           }
                         }
@@ -286,7 +286,7 @@ const documentation = {
             }
           },
           "400": {
-            description: "Requisição inválida. Parâmetros ausentes ou inválidos.",
+            description: "Invalid request. Missing or invalid parameters.",
             content: {
               "application/json": {
                 schema: {
@@ -302,7 +302,7 @@ const documentation = {
                     },
                     message: {
                       type: "string",
-                      example: "Entrada inválida ou parâmetros ausentes."
+                      example: "Invalid input or missing parameters."
                     }
                   }
                 }
@@ -310,7 +310,7 @@ const documentation = {
             }
           },
           "401": {
-            description: "Não autorizado. Erro na decriptação devido à senha incorreta ou texto criptografado inválido.",
+            description: "Unauthorized. Decryption failed due to incorrect password or invalid encrypted text.",
             content: {
               "application/json": {
                 schema: {
@@ -326,7 +326,7 @@ const documentation = {
                     },
                     message: {
                       type: "string",
-                      example: "Texto criptografado inválido ou erro na decriptação."
+                      example: "Invalid encrypted text or decryption error."
                     }
                   }
                 }
