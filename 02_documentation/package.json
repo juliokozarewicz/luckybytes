@@ -2,7 +2,7 @@
   "application_name": "Documentation",
   "service_name": "documentation",
   "version": "1.0.0",
-  "description": "*** Documentation description ****. \n\nEach service handles its errors independently, with translations for existing languages. The gateway has only two errors in English, with no translation support:\n\n[ 1 ] - Bad Request, attempt to access a non-existent endpoint in the documentation (code 406):\n\n```json\n{\n  \"status\": \"error\",\n  \"code\": 406,\n  \"message\": \"Bad Request: An error has occurred.\"\n}\n```\n\n[ 2 ] - Service Unavailable (code 503):\n\n```json\n{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service unavailable, we are investigating. Please try again later.\"\n}\n```",
+  "description": "This project is a Text Cryptography and Decryption API built with Node.js, Express, and TypeScript. The API is designed to offer a robust solution for encrypting and decrypting text, while ensuring performance, security, and scalability with the use of modern technologies and best practices. \n\nEach service handles its errors independently, with translations for existing languages. The gateway has only two errors in English, with no translation support:\n\n[ 1 ] - Bad Request, attempt to access a non-existent endpoint in the documentation (code 406):\n\n```json\n{\n  \"status\": \"error\",\n  \"code\": 406,\n  \"message\": \"Bad Request: An error has occurred.\"\n}\n```\n\n[ 2 ] - Service Unavailable (code 503):\n\n```json\n{\n  \"status\": \"error\",\n  \"code\": 503,\n  \"message\": \"Service unavailable, we are investigating. Please try again later.\"\n}\n```",
   "main": "index.js",
   "scripts": {
     "typeorm": "ts-node-dev node_modules/.bin/typeorm",
