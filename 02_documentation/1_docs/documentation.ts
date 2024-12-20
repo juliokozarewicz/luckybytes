@@ -207,6 +207,137 @@ const documentation = {
       }
     },
     // -------------------------------------------------- (end encryption)
+
+    // DECRYPTION
+    // --------------------------------------------------
+    "/luckybytes/decryption": {
+      post: {
+        summary: "Decrypt encrypted text using AES-256-CBC",
+        description: "Este endpoint recebe uma senha e um texto criptografado, valida-os e retorna o texto original (descriptografado) usando o algoritmo AES-256-CBC.",
+        tags: ["ENCRYPTION"],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  password: {
+                    type: "string",
+                    description: "Senha usada para derivar a chave e o IV para decriptação. Deve ter no mínimo 8 caracteres e não pode conter caracteres proibidos como <, >, &, ', \" ou /. ",
+                    example: "SecurePass1!"
+                  },
+                  cryptotext: {
+                    type: "string",
+                    description: "Texto criptografado que será decriptografado. O tamanho máximo é 1500 caracteres. Caracteres especiais como <, >, &, ', \" não são permitidos.",
+                    example: "7fbb0e8f58b91b01f0ef9c8d30d11b8b2b5206b8db63a716c8e2a655946bb7e9"
+                  }
+                },
+                required: ["password", "cryptotext"]
+              }
+            }
+          }
+        },
+        responses: {
+          "200": {
+            description: "Resposta bem-sucedida com o texto descriptografado.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "string",
+                      example: "success"
+                    },
+                    code: {
+                      type: "integer",
+                      example: 200
+                    },
+                    message: {
+                      type: "string",
+                      example: "Sucesso! O texto foi descriptografado com sucesso."
+                    },
+                    data: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          encrypted_text: {
+                            type: "string",
+                            description: "O texto original (descriptografado).",
+                            example: "This is a secret text to encrypt."
+                          }
+                        }
+                      }
+                    },
+                    links: {
+                      type: "object",
+                      properties: {
+                        self: {
+                          type: "string",
+                          example: "/luckybytes/decryption"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            description: "Requisição inválida. Parâmetros ausentes ou inválidos.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "string",
+                      example: "error"
+                    },
+                    code: {
+                      type: "integer",
+                      example: 400
+                    },
+                    message: {
+                      type: "string",
+                      example: "Entrada inválida ou parâmetros ausentes."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            description: "Não autorizado. Erro na decriptação devido à senha incorreta ou texto criptografado inválido.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "string",
+                      example: "error"
+                    },
+                    code: {
+                      type: "integer",
+                      example: 401
+                    },
+                    message: {
+                      type: "string",
+                      example: "Texto criptografado inválido ou erro na decriptação."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    // -------------------------------------------------- (end decryption)
+
   }
 };
 
